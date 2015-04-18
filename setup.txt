@@ -1,0 +1,28 @@
+1. Install virtual environment
+sudo pip install virtualenv
+
+2. Create virtual environment inside package being worked on
+$ mkdir myproject
+$ cd myproject
+$ virtualenv venv
+New python executable in venv/bin/python
+Installing distribute............done.
+
+
+
+3. Now, whenever you want to work on a project, you only have to activate the corresponding environment. On OS X and Linux, do the following:
+
+$ . venv/bin/activate
+
+
+4. Install packages needed while venv is active
+pip install Flask
+pip install flask-bootstrap
+pip install flask-login
+pip install pymongo
+
+(Note, all this stuff installed is only installed in the venv, therefore when it is not active in your current terminal window, it will seem like its not installed)
+
+
+5. When done, deactivate the venv
+$ deactivate

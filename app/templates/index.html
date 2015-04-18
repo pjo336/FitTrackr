@@ -1,0 +1,15 @@
+{% extends "bootstrap.html" %}
+<body>
+    {% block content %}
+    <div class="container">
+        <h1>Welcome to FitTrackr</h1>
+        <p>Track your workouts locally, as well as your nutrition from MyFitnessPal</p>
+        {% if users %}
+        <p>Users:</p>
+        {% endif %}
+        {% for each in users %}
+            <p>{{ each.email }}</p>
+        {% endfor %}
+    </div>
+    {% endblock %}
+</body>

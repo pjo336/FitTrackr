@@ -1,0 +1,36 @@
+{% extends "bootstrap.html" %}
+{% block scripts %}
+    {{ super() }}
+    <script type="text/javascript" src="/static/js/trackworkout.js"></script>
+{% endblock %}
+<body>
+    {% block content %}
+    <div class="container">
+        {% for each in exercises %}
+            <p>{{each.name}}
+                <button class="btn btn-primary" onclick="ajaxCall('/addExerciseToList', {exerciseName: '{{each.name}}', exerciseId: '{{each._id}}' })"> Add to workout</button>
+            </p>
+        {% endfor %}
+        <button id="addNewExerciseButton" class="btn btn-lg btn-danger">Add a new exercise</button>
+        <form id="addExerciseToDatabase" action="/addExerciseToDatabase" method="POST">
+            <input class="btn btn-lg btn-primary" type="submit" value="Save new exercise"></input>
+        </form>
+        <form id="saveWorkoutForm" action="/saveWorkout" method="POST">
+        <table id="workoutTable" class="table table-striped">
+            <thead>
+                <tr>
+                    <th>Exercise Name</th>
+                    <th>Weight Used</th>
+                    <th>Sets Performed</th>
+                    <th>Repetitions Per Set</th>
+                </tr>
+            </thead>
+            <tbody id="workoutList">
+            </tbody>
+        </table>            
+            <div id="hiddenInputsForForm"></div>
+        </form>
+        <button onclick="submitExerciseForm()" class="btn btn-success">Save Workout</button>
+    </div>
+    {% endblock %}
+</body>
