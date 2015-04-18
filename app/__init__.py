@@ -19,4 +19,4 @@ login_manager.login_view = "/login"
 # Initialize app secret key
 app.secret_key = SECRET_KEY
 
-from views import index
+from views import index, dashboard
