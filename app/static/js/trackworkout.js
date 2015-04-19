@@ -1,5 +1,7 @@
 $(function(){
     $("#addExerciseToDatabase").hide();
+    $('#datepicker1').datepicker({inline:true}); 
+
     $("#addNewExerciseButton").on("click", function(){
         $("#addExerciseToDatabase").toggle();
     });

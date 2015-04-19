@@ -2,16 +2,14 @@
 <body>
     {% block content %}
     <div class="container">
-        <h1>Welcome to your dashboard {{ current_user.email }}</h1>
+        <h1>Your workouts</h1>
 
-        <a class="btn btn-lg btn-primary" href="/trackWorkout">Log a work out</a>
-        <a class="btn btn-lg btn-success" href="/dashboard/workouts">View all your workouts</a>
+        <a class="btn btn-lg btn-primary" href="/dashboard">Back to your dashboard</a>
         {% if workout_list %}
-            <h3>Recent Workouts</h3>
             {% for each in workout_list %}
                 <p>{{each}}
                 </p>
-
+                <button class="btn btn-sm btn-danger">Delete this workout</button>
             {% endfor %}
         {% endif %}
     </div>

@@ -2,32 +2,53 @@
 {% block scripts %}
     {{ super() }}
     <script type="text/javascript" src="/static/js/trackworkout.js"></script>
+    <script type="text/javascript" src="/static/js/bootstrap-datepicker.js"></script>
 {% endblock %}
 <body>
     {% block content %}
     <div class="container">
         {% for each in exercises %}
             <p>{{each.name}}
-                <button class="btn btn-primary" onclick="ajaxCall('/addExerciseToList', {exerciseName: '{{each.name}}', exerciseId: '{{each._id}}' })"> Add to workout</button>
+                <button class="btn btn-primary btn-small" onclick="ajaxCall('/addExerciseToList', {exerciseName: '{{each.name}}', exerciseId: '{{each._id}}' })"> Add to workout</button>
             </p>
         {% endfor %}
         <button id="addNewExerciseButton" class="btn btn-lg btn-danger">Add a new exercise</button>
         <form id="addExerciseToDatabase" action="/addExerciseToDatabase" method="POST">
+            <input type="text" name="newExerciseName" placeholder="Exercise Name"></input>
+            <select name="newExerciseType">
+                {% for each in exercise_types %}
+                    <option value="{{each}}">{{each}}</option>
+                {% endfor %}
+            </select>
             <input class="btn btn-lg btn-primary" type="submit" value="Save new exercise"></input>
         </form>
+
         <form id="saveWorkoutForm" action="/saveWorkout" method="POST">
-        <table id="workoutTable" class="table table-striped">
-            <thead>
-                <tr>
-                    <th>Exercise Name</th>
-                    <th>Weight Used</th>
-                    <th>Sets Performed</th>
-                    <th>Repetitions Per Set</th>
-                </tr>
-            </thead>
-            <tbody id="workoutList">
-            </tbody>
-        </table>            
+            <label>Date of workout</label><br />
+            
+            <!-- Date picker for workout date -->
+            <div class="input-group">   
+                <label class="input-group-btn" for="date-fld">
+                    <span class="btn btn-default">
+                        <span class="glyphicon glyphicon-calendar"></span>
+                        <input readonly="" size="16" class="datepicker form-control date-input" data-date-format="mm/dd/yyyy" data-provide="datepicker" name="dateOfWorkout"></input>
+                    </span>
+                </label>
+            </div>
+            <!-- End of date picker -->
+
+            <table id="workoutTable" class="table table-striped">
+                <thead>
+                    <tr>
+                        <th>Exercise Name</th>
+                        <th>Weight Used</th>
+                        <th>Sets Performed</th>
+                        <th>Repetitions Per Set</th>
+                    </tr>
+                </thead>
+                <tbody id="workoutList">
+                </tbody>
+            </table>            
             <div id="hiddenInputsForForm"></div>
         </form>
         <button onclick="submitExerciseForm()" class="btn btn-success">Save Workout</button>
