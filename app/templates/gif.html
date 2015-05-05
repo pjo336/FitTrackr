@@ -1,0 +1,20 @@
+{% extends "bootstrap.html" %}
+
+<body>
+    {% block content %}
+        <img id="foo" style="width:100%; height:100%;" src="/static/img/gif.gif" onclick="doStuff()">
+        <script type="text/javascript">
+            var images = ['gif.gif', 'gif2.gif', 'gif3.gif'];
+            function doStuff() {
+                var shit = document.getElementById('foo');
+                var src = shit.src;
+                var image = src.substring(src.lastIndexOf('/') + 1);
+                for(img in images) {
+                    if(image != images[img]) {
+                        shit.src = '/static/img/' + images[img];
+                    }
+                }
+            }
+        </script>
+    {% endblock %}
+</body>

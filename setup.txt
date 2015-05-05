@@ -26,3 +26,7 @@ pip install pymongo
 
 5. When done, deactivate the venv
 $ deactivate
+
+Mongo - 
+remove all workouts from a user : 
+db.user.update({}, {$pull:{workouts:{workout_id:{$exists:true}}}}, false, true)

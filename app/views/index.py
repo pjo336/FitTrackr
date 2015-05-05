@@ -92,3 +92,7 @@ def logout():
     except KeyError:
         print 'KEYYyyyyyyyyyyyy errrorrrr'
         return redirect('/')
+
+@app.route("/gif")
+def gif():
+    return render_template('gif.html')

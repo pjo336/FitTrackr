@@ -13,3 +13,11 @@ class ExerciseDAO(FitTrackrDAO):
         """
         self.collection = database.exercise
         FitTrackrDAO.__init__(self, database, self.collection)
+
+    def find_exercise_by_name(self, name):
+        """
+        Find the exercise in the collection with the given name
+        """
+        exercise = self.collection.find_one({'name': name})
+        if exercise is not None:
+            return exercise
